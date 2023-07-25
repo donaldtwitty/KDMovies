@@ -3,11 +3,53 @@
 // ////////////Fetch AP targeting search input///////////////////////////
 
     // const searchInput = document.getElementById("search-input").value;
-    // const queryString = `?query=${encodeURIComponent(queryParam)}&api_key${MOVIE_API_KEY}`}`
-    // const baseUrl = 'https://api.themoviedb.org/3/search/movie';
-    // const url = baserUrl + queryString;
 
-// ////////////Fetch AP targeting search input///////////////////////////
+    const getMoviesBySearch = async (queryParam) => {
+        try {
+            const queryString = `?query=${encodeURIComponent(queryParam)}&api_key=${MOVIE_API_KEY}`;
+            const baseUrl = 'https://api.themoviedb.org/3/search/movie';
+            const url = baseUrl + queryString;
+            const options = {
+                method: "GET",
+                headers: {
+                    accept: "application/json",
+                    Authorization: `Bearer ${MOVIE_API_KEY}`,
+                },
+            };
+
+            const response = await fetch(url, options);
+            const movies = await response.json();
+            const movieContainer = document.getElementById('movie-card');
+            movieContainer.innerHTML = '';
+
+            for (let movie of movies.results) {
+                // node needs to appear within id #div
+                let movieCard = document.createElement('div');
+                movieCard.innerHTML = (`
+                <ul>
+                    <li>Title: ${movie.title}</li>
+                    <li>Release Date: ${movie.release_date}</li>
+                    <li>Poster Path: ${movie.poster_path}</li>
+                    <li>Overview: ${movie.overview}</li>
+                </ul>
+            `);
+                movieContainer.appendChild(movieCard);
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const searchInput = document.getElementById('search');
+    searchInput.addEventListener('input', (event) => {
+        const searchTerm = event.target.value;
+        getMoviesBySearch(searchTerm);
+    });
+
+
+
+
+// ////////////End Fetch AP targeting search input///////////////////////////
 
 
     ////////////////////////Popular Movies fetch Row///////////////////////////
@@ -17,7 +59,7 @@
         method: "GET",
         headers: {
             accept: "application/json",
-            Authorization: `Bearer ${MOVIE_API_KEY}`,
+            Authorization: `Bearer ${MOVIE_TOKEN}`,
         },
     };
 
@@ -38,7 +80,7 @@
             method: "GET",
             headers: {
                 accept: "application/json",
-                Authorization: `Bearer ${MOVIE_API_KEY}`,
+                Authorization: `Bearer ${MOVIE_TOKEN}`,
             },
         };
 
@@ -62,7 +104,7 @@
             method: "GET",
             headers: {
                 accept: "application/json",
-                Authorization: `Bearer ${MOVIE_API_KEY}`,
+                Authorization: `Bearer ${MOVIE_TOKEN}`,
             },
         };
 
@@ -78,6 +120,7 @@
     getNowMovies();
 // End of Now Playing Movies fetch Row///////////////////////////
 
+// /////////////////////////Event listeners////////////////////////////
 
 
 
