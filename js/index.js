@@ -8,5 +8,4 @@ fetch('http://localhost:3000/movies', {
         genre: 'Action',
         rating: 10
     })
-})
 

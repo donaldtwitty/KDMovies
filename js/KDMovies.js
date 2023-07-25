@@ -3,8 +3,9 @@
 // ////////////Fetch AP targeting search input///////////////////////////
 
     // const searchInput = document.getElementById("search-input").value;
-    // const searchUrl = `https://api.themoviedb.org/3/search/movie?query=${searchInput}`
-    // const url = 'https://api.themoviedb.org/3/movie/?query=shrek'
+    // const queryString = `?query=${encodeURIComponent(queryParam)}&api_key${MOVIE_API_KEY}`}`
+    // const baseUrl = 'https://api.themoviedb.org/3/search/movie';
+    // const url = baserUrl + queryString;
 
 // ////////////Fetch AP targeting search input///////////////////////////
 
@@ -16,7 +17,7 @@
         method: "GET",
         headers: {
             accept: "application/json",
-            Authorization: `Bearer ${MOVIE_TOKEN}`,
+            Authorization: `Bearer ${MOVIE_API_KEY}`,
         },
     };
 
@@ -37,7 +38,7 @@
             method: "GET",
             headers: {
                 accept: "application/json",
-                Authorization: `Bearer ${MOVIE_TOKEN}`,
+                Authorization: `Bearer ${MOVIE_API_KEY}`,
             },
         };
 
@@ -56,16 +57,16 @@
 
 ////////Now Playing Movies fetch Row///////////////////////////
     function getNowMovies() {
-        const nowPLayingUrl = "https://api.themoviedb.org/3/movie/now_playing"
+        const nowPlayingUrl = "https://api.themoviedb.org/3/movie/now_playing"
         const options = {
             method: "GET",
             headers: {
                 accept: "application/json",
-                Authorization: `Bearer ${MOVIE_TOKEN}`,
+                Authorization: `Bearer ${MOVIE_API_KEY}`,
             },
         };
 
-        fetch(nowPLayingUrl, options)
+        fetch(nowPlayingUrl, options)
             .then(response => {
                 return response.json();
             })
