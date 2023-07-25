@@ -8,4 +8,5 @@ fetch('http://localhost:3000/movies', {
         genre: 'Action',
         rating: 10
     })
-
+}).then(result => result.json() ).then(data => {
+    console.log(data)});

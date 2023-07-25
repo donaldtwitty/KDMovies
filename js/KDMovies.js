@@ -80,7 +80,7 @@
             method: "GET",
             headers: {
                 accept: "application/json",
-                Authorization: `Bearer ${MOVIE_TOKEN}`,
+                Authorization: `Bearer ${MOVIE_API_KEY}`,
             },
         };
 
@@ -104,7 +104,7 @@
             method: "GET",
             headers: {
                 accept: "application/json",
-                Authorization: `Bearer ${MOVIE_TOKEN}`,
+                Authorization: `Bearer ${MOVIE_API_KEY}`,
             },
         };
 
@@ -120,7 +120,6 @@
     getNowMovies();
 // End of Now Playing Movies fetch Row///////////////////////////
 
-// /////////////////////////Event listeners////////////////////////////
 
 
 
@@ -213,3 +212,58 @@
 // }
 // ////// End of Failed Attempt to add cards and functionality////////////////
 
+function getPopMovies() {
+    const popularUrl = "https://api.themoviedb.org/3/movie/popular"
+    const options = {
+        method: "GET",
+        headers: {
+            accept: "application/json",
+            Authorization: `Bearer ${MOVIE_TOKEN}`,
+        },
+    };
+
+    fetch(popularUrl, options)
+        .then(response => response.json())
+        .then(movies => {
+            const container1 = document.getElementById("container1");
+
+            movies.results.forEach(movie => {
+                const card = document.createElement("div");
+                card.classList.add("card");
+
+                const img = document.createElement("img");
+                img.classList.add("card-img-top");
+                img.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+
+                const cardBody = document.createElement("div");
+                cardBody.classList.add("card-body");
+
+                const title = document.createElement("h5");
+                title.classList.add("card-title");
+                title.textContent = movie.title;
+
+                const overview = document.createElement("p");
+                overview.classList.add("card-text");
+                overview.textContent = movie.overview;
+
+                const button = document.createElement("button");
+                button.classList.add("btn", "btn-primary");
+                button.textContent = "View Cast";
+                button.addEventListener("click", () => {
+                    // Add code to fetch and display cast information below the card
+                });
+
+                cardBody.appendChild(title);
+                cardBody.appendChild(overview);
+                cardBody.appendChild(button);
+
+                card.appendChild(img);
+                card.appendChild(cardBody);
+
+                container1.appendChild(card);
+            });
+        })
+        .catch(err => console.error(err));
+}
+
+getPopMovies();
