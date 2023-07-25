@@ -1,44 +1,86 @@
 (() => {
 
-// ////////////Fetch API targeting search input ////////////////////
+// ////////////Fetch AP targeting search input///////////////////////////
 
     // const searchInput = document.getElementById("search-input").value;
-    // const queryString = `?query=${encodeURIComponent(queryParam)}&api_key${MOVIE_API_KEY}})`
-    // const baseUrl = 'https://api.themoviedb.org/3/search/movie';
-    // const url = baserUrl + queryString;
+
+    const getMoviesBySearch = async (queryParam) => {
+        try {
+            const queryString = `?query=${encodeURIComponent(queryParam)}&api_key=${MOVIE_API_KEY}`;
+            const baseUrl = 'https://api.themoviedb.org/3/search/movie';
+            const url = baseUrl + queryString;
+            const options = {
+                method: "GET",
+                headers: {
+                    accept: "application/json",
+                    Authorization: `Bearer ${MOVIE_API_KEY}`,
+                },
+            };
+
+            const response = await fetch(url, options);
+            const movies = await response.json();
+            const movieContainer = document.getElementById('movie-card');
+            movieContainer.innerHTML = '';
+
+            for (let movie of movies.results) {
+                // node needs to appear within id #div
+                let movieCard = document.createElement('div');
+                movieCard.innerHTML = (`
+                <ul>
+                    <li>Title: ${movie.title}</li>
+                    <li>Release Date: ${movie.release_date}</li>
+                    <li>Poster Path: ${movie.poster_path}</li>
+                    <li>Overview: ${movie.overview}</li>
+                </ul>
+            `);
+                movieContainer.appendChild(movieCard);
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const searchInput = document.getElementById('search');
+    searchInput.addEventListener('input', (event) => {
+        const searchTerm = event.target.value;
+        getMoviesBySearch(searchTerm);
+    });
 
 
-    ////////////////////////Popular Movies fetch Row ///////////////////////////
+
+
+// ////////////End Fetch AP targeting search input///////////////////////////
+
+
+    ////////////////////////Popular Movies fetch Row///////////////////////////
     function getPopMovies() {
-        const popularUrl = "https://api.themoviedb.org/3/movie/popular"
-        const options = {
-            method: "GET",
-            headers: {
-                accept: "application/json",
-                Authorization: `Bearer ${MOVIE_TOKEN}`,
-            },
-        };
+    const popularUrl = "https://api.themoviedb.org/3/movie/popular"
+    const options = {
+        method: "GET",
+        headers: {
+            accept: "application/json",
+            Authorization: `Bearer ${MOVIE_TOKEN}`,
+        },
+    };
 
-        fetch(popularUrl, options)
-            .then(response => {
-                return response.json();
-            })
-            .then(movies => {
-                console.log(movies);
-            })
-            .catch(err => console.error(err));
-    }
-
+    fetch(popularUrl, options)
+        .then(response => {
+            return response.json();
+        })
+        .then(movies => {
+            console.log(movies);
+        })
+        .catch(err => console.error(err));
+}
     getPopMovies();
-
-//////// Top rated Movies fetch Row ///////////////////////////
+////////Top rated Movies fetch Row///////////////////////////
     function getTopMovies() {
         const topRatedUrl = "https://api.themoviedb.org/3/movie/top_rated"
         const options = {
             method: "GET",
             headers: {
                 accept: "application/json",
-                Authorization: `Bearer ${MOVIE_TOKEN}`,
+                Authorization: `Bearer ${MOVIE_API_KEY}`,
             },
         };
 
@@ -51,19 +93,18 @@
             })
             .catch(err => console.error(err));
     }
-
     getTopMovies();
 
-    //////// End of Top rated Movies fetch Row ///////////////////////////
+    //////// End of Top rated Movies fetch Row///////////////////////////
 
-//////// Now Playing Movies fetch Row ///////////////////////////
+////////Now Playing Movies fetch Row///////////////////////////
     function getNowMovies() {
         const nowPlayingUrl = "https://api.themoviedb.org/3/movie/now_playing"
         const options = {
             method: "GET",
             headers: {
                 accept: "application/json",
-                Authorization: `Bearer ${MOVIE_TOKEN}`,
+                Authorization: `Bearer ${MOVIE_API_KEY}`,
             },
         };
 
@@ -76,13 +117,15 @@
             })
             .catch(err => console.error(err));
     }
-
     getNowMovies();
 // End of Now Playing Movies fetch Row///////////////////////////
 
 
+
+
+
 })();
-////////////////////////Popular Movies fetch Row///////////////////////////
+    ////////////////////////Popular Movies fetch Row///////////////////////////
 
 // ////// Failed Attempt to add cards and functionality////////////////
 //             console.log(movies);
