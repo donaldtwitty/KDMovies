@@ -1,35 +1,171 @@
 (() => {
-        const url = 'https://api.themoviedb.org/3/search/movie?query=shrek'
+
+// ////////////Fetch AP targeting search input///////////////////////////
+
+    // const searchInput = document.getElementById("search-input").value;
+    // const searchUrl = `https://api.themoviedb.org/3/search/movie?query=${searchInput}`
+    // const url = 'https://api.themoviedb.org/3/movie/?query=shrek'
+
+// ////////////Fetch AP targeting search input///////////////////////////
+
+
+    ////////////////////////Popular Movies fetch Row///////////////////////////
+    function getPopMovies() {
+    const popularUrl = "https://api.themoviedb.org/3/movie/popular"
+    const options = {
+        method: "GET",
+        headers: {
+            accept: "application/json",
+            Authorization: `Bearer ${MOVIE_TOKEN}`,
+        },
+    };
+
+    fetch(popularUrl, options)
+        .then(response => {
+            return response.json();
+        })
+        .then(movies => {
+            console.log(movies);
+        })
+        .catch(err => console.error(err));
+}
+    getPopMovies();
+////////Top rated Movies fetch Row///////////////////////////
+    function getTopMovies() {
+        const topRatedUrl = "https://api.themoviedb.org/3/movie/top_rated"
         const options = {
-            method: 'GET',
+            method: "GET",
             headers: {
-                accept: 'application/json',
-                Authorization: `Bearer ${MOVIE_TOKEN}`
-            }
+                accept: "application/json",
+                Authorization: `Bearer ${MOVIE_TOKEN}`,
+            },
         };
 
-        fetch(url, options)
-            .then(response => response.json())
-            .then(response => console.log(response))
+        fetch(topRatedUrl, options)
+            .then(response => {
+                return response.json();
+            })
+            .then(movies => {
+                console.log(movies);
+            })
             .catch(err => console.error(err));
+    }
+    getTopMovies();
+
+    //////// End of Top rated Movies fetch Row///////////////////////////
+
+////////Now Playing Movies fetch Row///////////////////////////
+    function getNowMovies() {
+        const nowPLayingUrl = "https://api.themoviedb.org/3/movie/now_playing"
+        const options = {
+            method: "GET",
+            headers: {
+                accept: "application/json",
+                Authorization: `Bearer ${MOVIE_TOKEN}`,
+            },
+        };
+
+        fetch(nowPLayingUrl, options)
+            .then(response => {
+                return response.json();
+            })
+            .then(movies => {
+                console.log(movies);
+            })
+            .catch(err => console.error(err));
+    }
+    getNowMovies();
+// End of Now Playing Movies fetch Row///////////////////////////
+
+
+
+
 
 })();
+    ////////////////////////Popular Movies fetch Row///////////////////////////
 
-
-    // const options = {
-    //     method: 'GET',
-    //     headers: {
-    //         accept: 'application/json',
-    //         'Authorization': TMDB_API
-    //     }
-    // };
-    //
-    // fetch('https://api.themoviedb.org/3/search/movie?query=The Lion King', options)
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         console.log(data);
-    //     })
-    //     .catch(error => {
-    //         console.log(error.message);
-    //     });
+// ////// Failed Attempt to add cards and functionality////////////////
+//             console.log(movies);
+//             for (let i = 0; i < response.movies.length; i++) {
+//                 let title = response.movies[i].title;
+//                 let release_date = movies.results[i].release_date;
+//                 let poster_pat = movies.results[i].poster_path;
+//                 let overview = movies.results[i].overview;
+//                 card = document.createElement("div");
+//                 card.style = 'style="width: 18rem';
+//                 card.setAttribute("class", "col-lg-3 col-md-3 col-sm-3 m-1  card");
+//
+//                 let img = document.createElement("img");
+//                 img.classList.add("card-img-top");
+//                 img.src = img_url + poster_pat;
+//
+//                 let movieTitle = document.createElement("h5");
+//                 movieTitle.setAttribute("class", "card-title");
+//                 movieTitle.textContent = title;
+//
+//                 let mtvrd = document.createElement("h7");
+//                 mrd.setAttribute("class", "card-title");
+//                 mrd.textContent = "Date: " + release_date;
+//                 let button = document.createElement("button");
+//                 button.textContent = "view casts";
+//
+//                 button.className = "my-button";
+//
+//                 button.id = "my-button";
+//
+//                 let closeButton = document.createElement("button");
+//                 closeButton.textContent = "Close Cast";
+//                 closeButton.className = "close-button";
+//                 closeButton.style.display = "none";
+//
+//                 button.addEventListener("click", function () {
+//                     console.log("Button clicked!");
+//                     const movieId = response.results[i].id;
+//                     console.log(movieId);
+//                     const currentCard = button.closest(".card");
+//
+//                     getCast(movieId, currentCard);
+//                 });
+//
+//                 let overview = document.createElement("h7");
+//                 overview.setAttribute("class", "card-title");
+//                 overview.textContent = overview;
+//
+//                 card.append(img);
+//                 card.append(mtitle);
+//                 card.append(mrd);
+//                 card.append(overview);
+//                 card.append(button);
+//                 container1.append(card);
+//             }
+//             // ///////////Gets for cast///////////////////////////
+//             function getCast(movieId, currentCard) {
+//                 const apiKey = "e9097b137e5e9bacd6efb85111071284";
+//                 const castUrl = `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}`;
+//                 fetch(castUrl)
+//                     .then((response) => response.json())
+//                     .then((data) => {
+//                         console.log(data);
+//                         const cast = data.cast;
+//                         const castContainer = document.createElement("div");
+//
+//                         cast.forEach((actor) => {
+//                             const name = actor.name;
+//                             const character = actor.character;
+//                             const actorInfo = document.createElement("p");
+//                             actorInfo.textContent = `${name} as ${character}`;
+//                             castContainer.appendChild(actorInfo);
+//                         });
+//
+//                         // Append the cast container to the card or any desired HTML element
+//                         currentCard.appendChild(castContainer);
+//                     })
+//                     .catch((error) => {
+//                         console.error("Error:", error);
+//                     });
+//             }
+//         })
+//         .catch((err) => console.error(err));
+// }
+// ////// End of Failed Attempt to add cards and functionality////////////////
 
