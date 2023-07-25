@@ -19,6 +19,7 @@
 
 .container-wrapper {
     overflow-x: scroll;
+
 }
 
 .container1 {
@@ -32,13 +33,17 @@
     flex-wrap: nowrap;
     padding: 1rem;
 }
+
 .container3 {
     display: flex;
     flex-wrap: nowrap;
     padding: 1rem;
 }
+
 .container4 {
     display: flex;
     flex-wrap: nowrap;
     padding: 1rem;
 }
+
+
