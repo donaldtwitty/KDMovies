@@ -1,0 +1,23 @@
+.card {
+    width: 16rem;
+    margin: 0.5rem;
+}
+
+.card-img-top {
+    height: 15rem;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 1rem;
+}
+
+.container-wrapper {
+    overflow-x: scroll;
+}
+
+.container1 {
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 1rem;
+}

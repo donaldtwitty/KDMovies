@@ -1,44 +1,44 @@
 (() => {
 
-// ////////////Fetch AP targeting search input///////////////////////////
+// ////////////Fetch API targeting search input ////////////////////
 
     // const searchInput = document.getElementById("search-input").value;
-    // const queryString = `?query=${encodeURIComponent(queryParam)}&api_key${MOVIE_API_KEY}`}`
+    // const queryString = `?query=${encodeURIComponent(queryParam)}&api_key${MOVIE_API_KEY}})`
     // const baseUrl = 'https://api.themoviedb.org/3/search/movie';
     // const url = baserUrl + queryString;
 
-// ////////////Fetch AP targeting search input///////////////////////////
 
-
-    ////////////////////////Popular Movies fetch Row///////////////////////////
+    ////////////////////////Popular Movies fetch Row ///////////////////////////
     function getPopMovies() {
-    const popularUrl = "https://api.themoviedb.org/3/movie/popular"
-    const options = {
-        method: "GET",
-        headers: {
-            accept: "application/json",
-            Authorization: `Bearer ${MOVIE_API_KEY}`,
-        },
-    };
+        const popularUrl = "https://api.themoviedb.org/3/movie/popular"
+        const options = {
+            method: "GET",
+            headers: {
+                accept: "application/json",
+                Authorization: `Bearer ${MOVIE_TOKEN}`,
+            },
+        };
 
-    fetch(popularUrl, options)
-        .then(response => {
-            return response.json();
-        })
-        .then(movies => {
-            console.log(movies);
-        })
-        .catch(err => console.error(err));
-}
+        fetch(popularUrl, options)
+            .then(response => {
+                return response.json();
+            })
+            .then(movies => {
+                console.log(movies);
+            })
+            .catch(err => console.error(err));
+    }
+
     getPopMovies();
-////////Top rated Movies fetch Row///////////////////////////
+
+//////// Top rated Movies fetch Row ///////////////////////////
     function getTopMovies() {
         const topRatedUrl = "https://api.themoviedb.org/3/movie/top_rated"
         const options = {
             method: "GET",
             headers: {
                 accept: "application/json",
-                Authorization: `Bearer ${MOVIE_API_KEY}`,
+                Authorization: `Bearer ${MOVIE_TOKEN}`,
             },
         };
 
@@ -51,18 +51,19 @@
             })
             .catch(err => console.error(err));
     }
+
     getTopMovies();
 
-    //////// End of Top rated Movies fetch Row///////////////////////////
+    //////// End of Top rated Movies fetch Row ///////////////////////////
 
-////////Now Playing Movies fetch Row///////////////////////////
+//////// Now Playing Movies fetch Row ///////////////////////////
     function getNowMovies() {
         const nowPlayingUrl = "https://api.themoviedb.org/3/movie/now_playing"
         const options = {
             method: "GET",
             headers: {
                 accept: "application/json",
-                Authorization: `Bearer ${MOVIE_API_KEY}`,
+                Authorization: `Bearer ${MOVIE_TOKEN}`,
             },
         };
 
@@ -75,15 +76,13 @@
             })
             .catch(err => console.error(err));
     }
+
     getNowMovies();
 // End of Now Playing Movies fetch Row///////////////////////////
 
 
-
-
-
 })();
-    ////////////////////////Popular Movies fetch Row///////////////////////////
+////////////////////////Popular Movies fetch Row///////////////////////////
 
 // ////// Failed Attempt to add cards and functionality////////////////
 //             console.log(movies);
@@ -170,3 +169,58 @@
 // }
 // ////// End of Failed Attempt to add cards and functionality////////////////
 
+function getPopMovies() {
+    const popularUrl = "https://api.themoviedb.org/3/movie/popular"
+    const options = {
+        method: "GET",
+        headers: {
+            accept: "application/json",
+            Authorization: `Bearer ${MOVIE_TOKEN}`,
+        },
+    };
+
+    fetch(popularUrl, options)
+        .then(response => response.json())
+        .then(movies => {
+            const container1 = document.getElementById("container1");
+
+            movies.results.forEach(movie => {
+                const card = document.createElement("div");
+                card.classList.add("card");
+
+                const img = document.createElement("img");
+                img.classList.add("card-img-top");
+                img.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+
+                const cardBody = document.createElement("div");
+                cardBody.classList.add("card-body");
+
+                const title = document.createElement("h5");
+                title.classList.add("card-title");
+                title.textContent = movie.title;
+
+                const overview = document.createElement("p");
+                overview.classList.add("card-text");
+                overview.textContent = movie.overview;
+
+                const button = document.createElement("button");
+                button.classList.add("btn", "btn-primary");
+                button.textContent = "View Cast";
+                button.addEventListener("click", () => {
+                    // Add code to fetch and display cast information below the card
+                });
+
+                cardBody.appendChild(title);
+                cardBody.appendChild(overview);
+                cardBody.appendChild(button);
+
+                card.appendChild(img);
+                card.appendChild(cardBody);
+
+                container1.appendChild(card);
+            });
+        })
+        .catch(err => console.error(err));
+}
+
+getPopMovies();
