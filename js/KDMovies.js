@@ -20,7 +20,6 @@
                 throw new Error('Network response was not ok');
             }
 
-
             const movies = await response.json();
             const container4 = document.getElementById("container4");
             container4.innerHTML = ''; // Clear previous search results
@@ -28,8 +27,7 @@
             if (queryParam.trim() === '') {
                 // If search bar is empty, hide the search query header
                 searchQueryHeader.style.display = 'none';
-            }
-           else if (movies.results.length === 0) {
+            } else if (movies.results.length === 0) {
                 // If no movies found, display a message with <h1> element
                 searchQueryHeader.style.display = 'none';
                 const message = document.createElement('h1');
@@ -79,13 +77,13 @@
                 const url = 'http://localhost:3000/movies';
                 const options = {
                     method: 'POST',
-                    headers:{
+                    headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify(movie)
                 }
                 fetch(url, options)
-                    .then (response => response.json())
+                    .then(response => response.json())
                     .then(data => {
                         // console.log(data);
                         const container5 = document.getElementById("container5");
@@ -93,20 +91,20 @@
                         container5.appendChild(card);
                     })
             });
-        } else{
+        } else {
             const button = card.querySelector("button.btn.btn-primary.remove")
             button.addEventListener("click", (event) => {
                 const url = `http://localhost:3000/movies/${movie.id}`;
                 const options = {
                     method: 'DELETE',
-                    headers:{
+                    headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify(movie)
                 }
                 fetch(url, options)
-                   .then (response => response.json())
-                   .then(data => {
+                    .then(response => response.json())
+                    .then(data => {
                         // console.log(data);
                         card.remove();
                     })
@@ -114,6 +112,7 @@
         }
         return card;
     }
+
     function getPopMovies() {
         const popularUrl = "https://api.themoviedb.org/3/movie/popular?api_key=" + MOVIE_API_KEY;
         const options = {
@@ -190,9 +189,10 @@
     }
 
     getSoonMovies();
+
 // End of Upcoming  Movies fetch Row///////////////////////////
 
-    function getFavMovies(){
+    function getFavMovies() {
         const favUrl = "http://localhost:3000/movies";
         const options = {
             method: "GET",
@@ -211,6 +211,7 @@
                 });
             })
     }
+
     getFavMovies();
 
 ////////////////////////Favorite Option///////////////////////////
