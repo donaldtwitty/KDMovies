@@ -19,6 +19,46 @@
       "video": false,
       "vote_average": 8.5,
       "vote_count": 14581
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/tvXV6rYESvuBMw8rtn357jqRIDb.jpg",
+      "genre_ids": [
+        35,
+        53,
+        80,
+        10749
+      ],
+      "id": 28121,
+      "original_language": "en",
+      "original_title": "A Thin Line Between Love and Hate",
+      "overview": "Nightclub manager Darnell Wright is a perpetual playboy who is almost as devoted to his job as he is to the pursuit of beautiful women. After he sets his sights on the ultra-classy Brandi Web, he launches an all-out assault to win her heart. Ultimately, charm, lust and passion prevail, but Darnell learns the hard way that when you play, you pay. Brandi is much harder to get rid of than she was to get--especially when she realizes that she has a rival vying for Darnell's affection. When he finally decides to call it quits, Brandi becomes an obsessed femme fatale stalking the new love of her life.",
+      "popularity": 6.798,
+      "poster_path": "/wo9AGi5LlFXZUj8MDPq3eKCUMpd.jpg",
+      "release_date": "1996-04-04",
+      "title": "A Thin Line Between Love and Hate",
+      "video": false,
+      "vote_average": 5.753,
+      "vote_count": 73
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/dTG9yTJNIAwBNbDMGcoP6V4dh9G.jpg",
+      "genre_ids": [
+        28,
+        35
+      ],
+      "id": 10615,
+      "original_language": "en",
+      "original_title": "Pootie Tang",
+      "overview": "Pootie Tang, the musician/actor/folk hero of the ghetto, is chronicled from his early childhood to his battles against the evil Corporate America, who try to steal his magic belt and make him sell out by endorsing addictive products to his people. Pootie must learn to find himself and defeat the evil corporation for all the young black children of America, supatime.",
+      "popularity": 9.558,
+      "poster_path": "/fNvx45x4JWHYucpnV2vuKn9TZnV.jpg",
+      "release_date": "2001-06-29",
+      "title": "Pootie Tang",
+      "video": false,
+      "vote_average": 5,
+      "vote_count": 131
     }
   ]
 }
