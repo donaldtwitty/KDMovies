@@ -25,73 +25,25 @@
             const container4 = document.getElementById("container4");
             container4.innerHTML = ''; // Clear previous search results
 
-            movies.results.forEach(movie => {
-                const card = document.createElement("div");
-                card.classList.add("card");
+            if (queryParam.trim() === '') {
+                // If search bar is empty, hide the search query header
+                searchQueryHeader.style.display = 'none';
+            }
+           else if (movies.results.length === 0) {
+                // If no movies found, display a message with <h1> element
+                searchQueryHeader.style.display = 'none';
+                const message = document.createElement('h1');
+                message.textContent = "I'm sorry, but there are currently no movies found for your request. Please check your spelling or search a different movie.";
+                container4.appendChild(message);
+            } else {
+                searchQueryHeader.textContent = `Search results for: ${queryParam}`;
+                searchQueryHeader.style.display = 'block';
 
-
-            // the start of an attempt to put fav in JSON //
-                card.innerHTML = `
-                <form>
-                <div class="movie-Card">
-                        <div>
-                            <img src="https://image.tmdb.org/t/p/w500/${result.poster_path}">                           
-                        </div>
-                        <div>
-                        <h2>${result.original_title}</h2>
-                            <p>${result.genre_names.join(", ")}</p>
-                            <p>Popularity: ${result.popularity}</p>
-                            <p class="overview">${result.overview}</p>
-                            <button class="add-to-favorites">Add to Favorites</button>
-                        </div>
-                </div>
-            </form>
-                `;
-
-                serchedMovieParentDiv.appendChild(dynamicSearchedMovie);
-                let addBtn = dynamicSearchedMovie.querySelector('.add-to-favorites');
-                addBtn.addEventListener('click', async (e) => {
-                    e.preventDefault();
-                    console.log(serchedMovieParentDiv);
-                    const response = await addToFavorites(result);
-                    console.log(response);
-                    const favMoviesDiv = document.querySelector('#favorite-movies');
-                    favMoviesDiv.innerHTML = ``;
-                    await renderFavoriteMovies(await getFavoriteMovies());
-                })
-            // the end of an attempt to put fav in JSON //
-
-                const img = document.createElement("img");
-                img.classList.add("card-img-top");
-                img.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
-
-                const cardBody = document.createElement("div");
-                cardBody.classList.add("card-body");
-
-                const title = document.createElement("h5");
-                title.classList.add("card-title");
-                title.textContent = movie.title;
-
-                const overview = document.createElement("p");
-                overview.classList.add("card-text");
-                overview.textContent = movie.vote_average;
-
-                const button = document.createElement("button");
-                button.classList.add("btn", "btn-primary");
-                button.textContent = "Add to Favorites";
-                button.addEventListener("click", () => {
-                    // Add code to fetch and display cast information below the card
+                movies.results.forEach(movie => {
+                    const card = renderMovieCard(movie);
+                    container4.appendChild(card);
                 });
-
-                cardBody.appendChild(title);
-                cardBody.appendChild(overview);
-                cardBody.appendChild(button);
-
-                card.appendChild(img);
-                card.appendChild(cardBody);
-
-                container4.appendChild(card);
-            });
+            }
         } catch (error) {
             console.error('Error fetching data:', error);
         }
@@ -107,14 +59,67 @@
 
 
 ////////////////////////Popular Movies fetch Row///////////////////////////
-
+    function renderMovieCard(movie, isFav) {
+        const card = document.createElement("div");
+        card.classList.add("card");
+        card.innerHTML = `
+                        <img class="card-img-top" src="https://image.tmdb.org/t/p/w500${movie.poster_path}">
+                        <div class="card-body">
+                            <h5 class="card-title">${movie.title}</h5>
+                            <p class="card-text">
+                                Released: ${movie.release_date} <br>
+                                Rating: ${movie.vote_average}
+                            </p>
+                            ${isFav ? '<button class="btn btn-primary remove">Remove</button>' : `<button class="btn btn-primary edit">Add to Favorite</button>`}
+                        </div>
+                    `;
+        if (!isFav) {
+            const button = card.querySelector("button.btn.btn-primary.edit")
+            button.addEventListener("click", (event) => {
+                const url = 'http://localhost:3000/movies';
+                const options = {
+                    method: 'POST',
+                    headers:{
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(movie)
+                }
+                fetch(url, options)
+                    .then (response => response.json())
+                    .then(data => {
+                        // console.log(data);
+                        const container5 = document.getElementById("container5");
+                        const card = renderMovieCard(data, true);
+                        container5.appendChild(card);
+                    })
+            });
+        } else{
+            const button = card.querySelector("button.btn.btn-primary.remove")
+            button.addEventListener("click", (event) => {
+                const url = `http://localhost:3000/movies/${movie.id}`;
+                const options = {
+                    method: 'DELETE',
+                    headers:{
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(movie)
+                }
+                fetch(url, options)
+                   .then (response => response.json())
+                   .then(data => {
+                        // console.log(data);
+                        card.remove();
+                    })
+            });
+        }
+        return card;
+    }
     function getPopMovies() {
-        const popularUrl = "https://api.themoviedb.org/3/movie/popular"
+        const popularUrl = "https://api.themoviedb.org/3/movie/popular?api_key=" + MOVIE_API_KEY;
         const options = {
             method: "GET",
             headers: {
                 accept: "application/json",
-                Authorization: `Bearer ${MOVIE_TOKEN}`,
             },
         };
 
@@ -123,55 +128,8 @@
             .then(response => response.json())
             .then(movies => {
                 const container1 = document.getElementById("container1");
-
                 movies.results.forEach(movie => {
-                    const card = document.createElement("div");
-                    card.classList.add("card");
-
-                    const img = document.createElement("img");
-                    img.classList.add("card-img-top");
-                    img.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
-
-                    const cardBody = document.createElement("div");
-                    cardBody.classList.add("card-body");
-
-                    const title = document.createElement("h5");
-                    title.classList.add("card-title");
-                    title.textContent = movie.title;
-
-                    const overview = document.createElement("p");
-                    overview.classList.add("card-text");
-                    overview.textContent = `Released: ${movie.release_date}`;
-                    overview.textContent = `Rating: ${movie.vote_average} `;
-
-                    const button = document.createElement("button");
-                    button.classList.add("btn", "btn-primary");
-                    button.textContent = "Add to Favorite";
-                    button.addEventListener("click", (event) => {
-                        // Add code to fetch and display cast information below the card
-
-                        // just seeing //
-
-                        // end of just seeing //
-
-
-                        // find and store the parent's parent of the button
-
-                        // using this grandparent, find the image that resides inside and save the src url in a variable
-                        // same thing with title and rating (.card-title and .card-text)
-
-                        // use these three variable to populate the JSON stringified body of our POST fetch request
-
-
-                    });
-
-                    cardBody.appendChild(title);
-                    cardBody.appendChild(overview);
-                    cardBody.appendChild(button);
-
-                    card.appendChild(img);
-                    card.appendChild(cardBody);
-
+                    const card = renderMovieCard(movie);
                     container1.appendChild(card);
                 });
             })
@@ -181,15 +139,13 @@
 
     getPopMovies();
 
-
 ////////Top rated Movies fetch Row///////////////////////////
     function getTopMovies() {
-        const topRatedUrl = "https://api.themoviedb.org/3/movie/top_rated"
+        const topRatedUrl = `https://api.themoviedb.org/3/movie/top_rated?api_key=${MOVIE_API_KEY}&language=en-US`;
         const options = {
             method: "GET",
             headers: {
                 accept: "application/json",
-                Authorization: `Bearer ${MOVIE_API_KEY}`,
             },
         };
 
@@ -199,40 +155,7 @@
                 const container3 = document.getElementById("container3");
 
                 movies.results.forEach(movie => {
-                    const card = document.createElement("div");
-                    card.classList.add("card");
-
-                    const img = document.createElement("img");
-                    img.classList.add("card-img-top");
-                    img.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
-
-                    const cardBody = document.createElement("div");
-                    cardBody.classList.add("card-body");
-
-                    const title = document.createElement("h5");
-                    title.classList.add("card-title");
-                    title.textContent = movie.title;
-
-                    const overview = document.createElement("p");
-                    overview.classList.add("card-text");
-                    overview.textContent = `Released: ${movie.release_date}`;
-                    overview.textContent = `Rating: ${movie.vote_average} `;
-
-
-                    const button = document.createElement("button");
-                    button.classList.add("btn", "btn-primary");
-                    button.textContent = "View Cast";
-                    button.addEventListener("click", () => {
-                        // Add code to fetch and display cast information below the card
-                    });
-
-                    cardBody.appendChild(title);
-                    cardBody.appendChild(overview);
-                    cardBody.appendChild(button);
-
-                    card.appendChild(img);
-                    card.appendChild(cardBody);
-
+                    const card = renderMovieCard(movie);
                     container3.appendChild(card);
                 });
             })
@@ -243,65 +166,52 @@
 
     //////// End of Top rated Movies fetch Row///////////////////////////
 
-////////Now Playing Movies fetch Row///////////////////////////
-    function getNowMovies() {
-        const nowPlayingUrl = "https://api.themoviedb.org/3/movie/now_playing"
+////////Upcoming Movies fetch Row///////////////////////////
+    function getSoonMovies() {
+        const upcomingUrl = "https://api.themoviedb.org/3/movie/upcoming?=&api_key=" + MOVIE_API_KEY;
         const options = {
             method: "GET",
             headers: {
                 accept: "application/json",
-                Authorization: `Bearer ${MOVIE_API_KEY}`,
             },
         };
 
-        fetch(nowPlayingUrl, options)
+        fetch(upcomingUrl, options)
             .then(response => response.json())
             .then(movies => {
                 const container2 = document.getElementById("container2");
 
                 movies.results.forEach(movie => {
-                    const card = document.createElement("div");
-                    card.classList.add("card");
-
-                    const img = document.createElement("img");
-                    img.classList.add("card-img-top");
-                    img.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
-
-                    const cardBody = document.createElement("div");
-                    cardBody.classList.add("card-body");
-
-                    const title = document.createElement("h5");
-                    title.classList.add("card-title");
-                    title.textContent = movie.title;
-
-                    const overview = document.createElement("p");
-                    overview.classList.add("card-text");
-                    overview.textContent = `Released: ${movie.release_date}`;
-                    overview.textContent = `Rating: ${movie.vote_average} `;
-
-                    const button = document.createElement("button");
-                    button.classList.add("btn", "btn-primary");
-                    button.textContent = "View Cast";
-                    button.addEventListener("click", () => {
-                        // Add code to fetch and display cast information below the card
-                    });
-
-                    cardBody.appendChild(title);
-                    cardBody.appendChild(overview);
-                    cardBody.appendChild(button);
-
-                    card.appendChild(img);
-                    card.appendChild(cardBody);
-
+                    const card = renderMovieCard(movie);
                     container2.appendChild(card);
                 });
             })
             .catch(err => console.error(err));
     }
 
-    getNowMovies();
-// End of Now Playing Movies fetch Row///////////////////////////
+    getSoonMovies();
+// End of Upcoming  Movies fetch Row///////////////////////////
 
+    function getFavMovies(){
+        const favUrl = "http://localhost:3000/movies";
+        const options = {
+            method: "GET",
+            headers: {
+                accept: "application/json",
+            },
+        }
+        fetch(favUrl, options)
+            .then(response => response.json())
+            .then(movies => {
+                console.log(movies);
+                const container5 = document.getElementById("container5");
+                movies.forEach(movie => {
+                    const card = renderMovieCard(movie, true);
+                    container5.appendChild(card);
+                });
+            })
+    }
+    getFavMovies();
 
 ////////////////////////Favorite Option///////////////////////////
 
