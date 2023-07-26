@@ -2,25 +2,62 @@
   "movies": [
     {
       "adult": false,
-      "backdrop_path": "/14GEZCzCGhV7FMFaWi4Ec22Kcai.jpg",
+      "backdrop_path": "/jK9f8HMPFilrHNeB51angpZMEwG.jpg",
       "genre_ids": [
-        16,
-        12,
-        10751,
-        14
+        35,
+        10749
       ],
-      "id": 459003,
-      "original_language": "uk",
-      "original_title": "Мавка: Лісова пісня",
-      "overview": "Mavka — a Soul of the Forest and its Warden — faces an impossible choice between love and her duty as guardian to the Heart of the Forest, when she falls in love with a human — the talented young musician Lukas.",
-      "popularity": 2211.908,
-      "poster_path": "/eeJjd9JU2Mdj9d7nWRFLWlrcExi.jpg",
-      "release_date": "2023-03-02",
-      "title": "Mavka: The Forest Song",
+      "id": 10297,
+      "original_language": "en",
+      "original_title": "How to Marry a Millionaire",
+      "overview": "Three women set out to find eligible millionaires to marry, but find true love in the process.",
+      "popularity": 11.789,
+      "poster_path": "/dFwefYyEOOZaWVn15xGY6CbYYJ2.jpg",
+      "release_date": "1953-10-29",
+      "title": "How to Marry a Millionaire",
       "video": false,
-      "vote_average": 7.5,
-      "vote_count": 114,
-      "review": "jkb"
+      "vote_average": 6.842,
+      "vote_count": 452
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/dTG9yTJNIAwBNbDMGcoP6V4dh9G.jpg",
+      "genre_ids": [
+        28,
+        35
+      ],
+      "id": 10615,
+      "original_language": "en",
+      "original_title": "Pootie Tang",
+      "overview": "Pootie Tang, the musician/actor/folk hero of the ghetto, is chronicled from his early childhood to his battles against the evil Corporate America, who try to steal his magic belt and make him sell out by endorsing addictive products to his people. Pootie must learn to find himself and defeat the evil corporation for all the young black children of America, supatime.",
+      "popularity": 9.558,
+      "poster_path": "/fNvx45x4JWHYucpnV2vuKn9TZnV.jpg",
+      "release_date": "2001-06-29",
+      "title": "Pootie Tang",
+      "video": false,
+      "vote_average": 5,
+      "vote_count": 131
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/fgw4rFs4XMWdJTWp1eMacHKQqbZ.jpg",
+      "genre_ids": [
+        28,
+        53,
+        80
+      ],
+      "id": 603692,
+      "original_language": "en",
+      "original_title": "John Wick: Chapter 4",
+      "overview": "With the price on his head ever increasing, John Wick uncovers a path to defeating The High Table. But before he can earn his freedom, Wick must face off against a new enemy with powerful alliances across the globe and forces that turn old friends into foes.",
+      "popularity": 1130.023,
+      "poster_path": "/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg",
+      "release_date": "2023-03-22",
+      "title": "John Wick: Chapter 4",
+      "video": false,
+      "vote_average": 7.845,
+      "vote_count": 3901,
+      "review": "this was amazing"
     }
   ]
 }

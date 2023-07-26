@@ -165,10 +165,8 @@
             const bootstrapModal = new bootstrap.Modal(modal);
             card.addEventListener('click', (e) => {
                 if (e.target === button) {
-                    // do nothin'
                 } else {
 
-                    // do the thangs, i.e. bring up an edit modal
                     console.log('clicked the card, but not the button');
 
                     bootstrapModal.show();
@@ -178,6 +176,8 @@
         }
         return card;
     }
+
+////////////////////////END of Popular Movies fetch Row///////////////////////////
 
     function getPopMovies() {
         const popularUrl = "https://api.themoviedb.org/3/movie/popular?api_key=" + MOVIE_API_KEY;
@@ -229,7 +229,7 @@
 
     getTopMovies();
 
-    //////// End of Top rated Movies fetch Row///////////////////////////
+//////// End of Top rated Movies fetch Row///////////////////////////
 
 ////////Upcoming Movies fetch Row///////////////////////////
     function getSoonMovies() {
@@ -257,7 +257,6 @@
     getSoonMovies();
 
 // End of Upcoming  Movies fetch Row///////////////////////////
-
     function getFavMovies() {
         const favUrl = "http://localhost:3000/movies";
         const options = {
@@ -279,7 +278,8 @@
     }
 
     getFavMovies();
-    ///////////////////////////End of Favorite Option///////////////////////////
+
+///////////////////////////End of Favorite Option///////////////////////////
 
 })();
 
