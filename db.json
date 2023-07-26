@@ -2,63 +2,123 @@
   "movies": [
     {
       "adult": false,
-      "backdrop_path": "/mSDsSDwaP3E7dEfUPWy4J0djt4O.jpg",
+      "backdrop_path": "/f7UI3dYpr7ZUHGo0iIr1Qvy1VPe.jpg",
       "genre_ids": [
         16,
         10751,
-        14
-      ],
-      "id": 129,
-      "original_language": "ja",
-      "original_title": "千と千尋の神隠し",
-      "overview": "A young girl, Chihiro, becomes trapped in a strange new world of spirits. When her parents undergo a mysterious transformation, she must call upon the courage she never knew she had to free her family.",
-      "popularity": 80.413,
-      "poster_path": "/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg",
-      "release_date": "2001-07-20",
-      "title": "Spirited Away",
-      "video": false,
-      "vote_average": 8.5,
-      "vote_count": 14581
-    },
-    {
-      "adult": false,
-      "backdrop_path": "/tvXV6rYESvuBMw8rtn357jqRIDb.jpg",
-      "genre_ids": [
-        35,
-        53,
-        80,
-        10749
-      ],
-      "id": 28121,
-      "original_language": "en",
-      "original_title": "A Thin Line Between Love and Hate",
-      "overview": "Nightclub manager Darnell Wright is a perpetual playboy who is almost as devoted to his job as he is to the pursuit of beautiful women. After he sets his sights on the ultra-classy Brandi Web, he launches an all-out assault to win her heart. Ultimately, charm, lust and passion prevail, but Darnell learns the hard way that when you play, you pay. Brandi is much harder to get rid of than she was to get--especially when she realizes that she has a rival vying for Darnell's affection. When he finally decides to call it quits, Brandi becomes an obsessed femme fatale stalking the new love of her life.",
-      "popularity": 6.798,
-      "poster_path": "/wo9AGi5LlFXZUj8MDPq3eKCUMpd.jpg",
-      "release_date": "1996-04-04",
-      "title": "A Thin Line Between Love and Hate",
-      "video": false,
-      "vote_average": 5.753,
-      "vote_count": 73
-    },
-    {
-      "adult": false,
-      "backdrop_path": "/dTG9yTJNIAwBNbDMGcoP6V4dh9G.jpg",
-      "genre_ids": [
-        28,
+        14,
         35
       ],
-      "id": 10615,
+      "id": 1040148,
       "original_language": "en",
-      "original_title": "Pootie Tang",
-      "overview": "Pootie Tang, the musician/actor/folk hero of the ghetto, is chronicled from his early childhood to his battles against the evil Corporate America, who try to steal his magic belt and make him sell out by endorsing addictive products to his people. Pootie must learn to find himself and defeat the evil corporation for all the young black children of America, supatime.",
-      "popularity": 9.558,
-      "poster_path": "/fNvx45x4JWHYucpnV2vuKn9TZnV.jpg",
-      "release_date": "2001-06-29",
-      "title": "Pootie Tang",
+      "original_title": "Ruby Gillman, Teenage Kraken",
+      "overview": "Ruby Gillman, a sweet and awkward high school student, discovers she's a direct descendant of the warrior kraken queens. The kraken are sworn to protect the oceans of the world against the vain, power-hungry mermaids. Destined to inherit the throne from her commanding grandmother, Ruby must use her newfound powers to protect those she loves most.",
+      "popularity": 2776.707,
+      "poster_path": "/kgrLpJcLBbyhWIkK7fx1fM4iSvf.jpg",
+      "release_date": "2023-06-28",
+      "title": "Ruby Gillman, Teenage Kraken",
       "video": false,
-      "vote_average": 5,
-      "vote_count": 131
+      "vote_average": 7.7,
+      "vote_count": 222
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/14GEZCzCGhV7FMFaWi4Ec22Kcai.jpg",
+      "genre_ids": [
+        16,
+        12,
+        10751,
+        14
+      ],
+      "id": 459003,
+      "original_language": "uk",
+      "original_title": "Мавка: Лісова пісня",
+      "overview": "Mavka — a Soul of the Forest and its Warden — faces an impossible choice between love and her duty as guardian to the Heart of the Forest, when she falls in love with a human — the talented young musician Lukas.",
+      "popularity": 2211.908,
+      "poster_path": "/eeJjd9JU2Mdj9d7nWRFLWlrcExi.jpg",
+      "release_date": "2023-03-02",
+      "title": "Mavka: The Forest Song",
+      "video": false,
+      "vote_average": 7.5,
+      "vote_count": 114
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/oqP1qEZccq5AD9TVTIaO6IGUj7o.jpg",
+      "genre_ids": [
+        14,
+        28,
+        12
+      ],
+      "id": 455476,
+      "original_language": "en",
+      "original_title": "Knights of the Zodiac",
+      "overview": "When a headstrong street orphan, Seiya, in search of his abducted sister unwittingly taps into hidden powers, he discovers he might be the only person alive who can protect a reincarnated goddess, sent to watch over humanity. Can he let his past go and embrace his destiny to become a Knight of the Zodiac?",
+      "popularity": 1336.633,
+      "poster_path": "/qW4crfED8mpNDadSmMdi7ZDzhXF.jpg",
+      "release_date": "2023-04-27",
+      "title": "Knights of the Zodiac",
+      "video": false,
+      "vote_average": 6.6,
+      "vote_count": 605
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/7I6VUdPj6tQECNHdviJkUHD2u89.jpg",
+      "genre_ids": [
+        28,
+        53,
+        80
+      ],
+      "id": 603692,
+      "original_language": "en",
+      "original_title": "John Wick: Chapter 4",
+      "overview": "With the price on his head ever increasing, John Wick uncovers a path to defeating The High Table. But before he can earn his freedom, Wick must face off against a new enemy with powerful alliances across the globe and forces that turn old friends into foes.",
+      "popularity": 1130.023,
+      "poster_path": "/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg",
+      "release_date": "2023-03-22",
+      "title": "John Wick: Chapter 4",
+      "video": false,
+      "vote_average": 7.8,
+      "vote_count": 3888
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/uyi0Ytkkw4pgT4GkYZHdqravjT5.jpg",
+      "genre_ids": [
+        28,
+        18
+      ],
+      "id": 678512,
+      "original_language": "en",
+      "original_title": "Sound of Freedom",
+      "overview": "The story of Tim Ballard, a former US government agent, who quits his job in order to devote his life to rescuing children from global sex traffickers.",
+      "popularity": 1310.571,
+      "poster_path": "/1laG6ntAYpTOxx2H5Gh0Ku0HZON.jpg",
+      "release_date": "2023-07-03",
+      "title": "Sound of Freedom",
+      "video": false,
+      "vote_average": 8,
+      "vote_count": 188
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/k9Ps0EsrTnqbQ4oTTWx628BQ2TW.jpg",
+      "genre_ids": [
+        28,
+        80
+      ],
+      "id": 24,
+      "original_language": "en",
+      "original_title": "Kill Bill: Vol. 1",
+      "overview": "An assassin is shot by her ruthless employer, Bill, and other members of their assassination circle – but she lives to plot her vengeance.",
+      "popularity": 35.258,
+      "poster_path": "/v7TaX8kXMXs5yFFGR41guUDNcnB.jpg",
+      "release_date": "2003-10-10",
+      "title": "Kill Bill: Vol. 1",
+      "video": false,
+      "vote_average": 7.97,
+      "vote_count": 15966
     }
   ]
 }

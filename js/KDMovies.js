@@ -71,6 +71,7 @@
                             ${isFav ? '<button class="btn btn-primary remove">Remove</button>' : `<button class="btn btn-primary edit">Add to Favorite</button>`}
                         </div>
                     `;
+
         if (!isFav) {
             const button = card.querySelector("button.btn.btn-primary.edit")
             button.addEventListener("click", (event) => {
@@ -109,6 +110,73 @@
                         card.remove();
                     })
             });
+            const modal = document.createElement('div');
+            modal.classList.add("modal", "fade");
+            modal.setAttribute('id', movie.id);
+            modal.setAttribute('data-bs-backdrop', 'static');
+            modal.setAttribute('data-bs-keyboard', 'false');
+            modal.setAttribute("tabindex", "-1");
+            modal.setAttribute("aria-labelledby", "staticBackdropLabel");
+            modal.setAttribute("aria-hidden", "true");
+            modal.innerHTML = `
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">What's Your Rating?</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <input type="text"> 
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary submit">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+            const submitBtn = modal.querySelector('button.submit');
+            const textInput = modal.querySelector('input');
+            // todo: add event listener to submit button to update json-server
+            // AND update the card in the dom with the new info
+
+            submitBtn.addEventListener("click", () => {
+                const url = `http://localhost:3000/movies/${movie.id}`;
+                const options = {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        review: textInput.value
+                    })
+                };
+                fetch(url, options)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Success:', data);
+
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+                bootstrapModal.hide();
+            });
+
+            document.body.appendChild(modal);
+            const bootstrapModal = new bootstrap.Modal(modal);
+            card.addEventListener('click', (e) => {
+                if (e.target === button) {
+                    // do nothin'
+                } else {
+
+                    // do the thangs, i.e. bring up an edit modal
+                    console.log('clicked the card, but not the button');
+
+                    bootstrapModal.show();
+
+                }
+            })
         }
         return card;
     }
