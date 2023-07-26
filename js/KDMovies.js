@@ -137,8 +137,6 @@
                     `;
             const submitBtn = modal.querySelector('button.submit');
             const textInput = modal.querySelector('input');
-            // todo: add event listener to submit button to update json-server
-            // AND update the card in the dom with the new info
 
             submitBtn.addEventListener("click", () => {
                 const url = `http://localhost:3000/movies/${movie.id}`;
@@ -154,7 +152,7 @@
                 fetch(url, options)
                     .then(response => response.json())
                     .then(data => {
-                        console.log('Success:', data);
+                        console.log('Success:', data)
 
                     })
                     .catch((error) => {
@@ -281,8 +279,7 @@
     }
 
     getFavMovies();
-
-////////////////////////Favorite Option///////////////////////////
+    ///////////////////////////End of Favorite Option///////////////////////////
 
 })();
 
