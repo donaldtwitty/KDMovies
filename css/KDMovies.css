@@ -15,7 +15,7 @@
 
 .card-body {
     padding: 1rem;
-    color:white;
+    color: white;
 
 }
 
@@ -59,48 +59,57 @@ img.d-block.w-100 {
     background-position: center;
     opacity: 90%;
 }
-body{
-    background-image: url("/img/mybt.gif");
-    background-size: contain;
+
+body {
+    background-image: url("/img/hu.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 .card-text {
-    flex:1 0 0;
-    color:white;
+    flex: 1 0 0;
+    color: white;
 }
 
 .card-body {
-    display:flex;
+    display: flex;
     flex-direction: column;
 }
-h1{
+
+h1 {
     color: white;
-    font-family: "movie poster personal use";
+    font-family: "englebert";
     margin-left: 1rem;
 }
+
 input#search {
     position: relative;
     z-index: 9;
     width: 77%;
     align-items: center;
 }
-.navbar.mt-3.mb-3{
+
+.navbar.mt-3.mb-3 {
     background-color: rgba(0, 0, 0, 0.33);
-    font-family: "movie poster personal use";
+    font-family: "englebert";
     font-size: x-large;
-    color:white;
+    color: white;
 }
-.navbar-title{
+
+.navbar-title {
     color: white;
     text-decoration: none;
     white-space: nowrap;
 }
+
 .container.navbar {
     display: flex;
     justify-content: center; /* Horizontal centering */
     align-items: center; /* Vertical centering */
     /* Add other styling as needed */
 }
+
 .carousel-item {
     position: relative;
 }
@@ -112,6 +121,7 @@ input#search {
     transform: translateX(-50%);
     z-index: 1;
 }
+
 .btn {
     font-size: 1.2rem;
     padding: 1rem 2.5rem;
@@ -125,7 +135,7 @@ input#search {
     font-weight: 700;
     transition: 0.6s;
     box-shadow: 0px 0px 60px #1f4c65;
-    -webkit-box-reflect: below 10px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4));
+    -webkit-box-reflect: below 10px linear-gradient(to bottom, rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.4));
 }
 
 .btn:active {
@@ -133,7 +143,27 @@ input#search {
 }
 
 .btn:hover {
-    background: rgb(2,29,78);
+    background: rgb(2, 29, 78);
     background: linear-gradient(270deg, rgba(2, 29, 78, 0.681) 0%, rgba(31, 215, 232, 0.873) 60%);
     color: rgb(4, 4, 38);
+}
+
+form.container.navbar {
+    position: relative;
+}
+
+i.fa-solid.fa-magnifying-glass.fa-beat-fade {
+    position: absolute;
+    z-index: 10;
+    translate: 30rem;
+}
+img#pop {
+    height: 60px;
+    align-items: center;
+    margin-bottom: 20px;
+
+}
+a.navbar-title {
+    font-family: "englebert";
+    font-size: 22px;
 }

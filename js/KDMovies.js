@@ -137,8 +137,6 @@
                     `;
             const submitBtn = modal.querySelector('button.submit');
             const textInput = modal.querySelector('input');
-            // todo: add event listener to submit button to update json-server
-            // AND update the card in the dom with the new info
 
             submitBtn.addEventListener("click", () => {
                 const url = `http://localhost:3000/movies/${movie.id}`;
@@ -154,7 +152,7 @@
                 fetch(url, options)
                     .then(response => response.json())
                     .then(data => {
-                        console.log('Success:', data);
+                        console.log('Success:', data)
 
                     })
                     .catch((error) => {
@@ -167,10 +165,8 @@
             const bootstrapModal = new bootstrap.Modal(modal);
             card.addEventListener('click', (e) => {
                 if (e.target === button) {
-                    // do nothin'
                 } else {
 
-                    // do the thangs, i.e. bring up an edit modal
                     console.log('clicked the card, but not the button');
 
                     bootstrapModal.show();
@@ -180,6 +176,8 @@
         }
         return card;
     }
+
+////////////////////////END of Popular Movies fetch Row///////////////////////////
 
     function getPopMovies() {
         const popularUrl = "https://api.themoviedb.org/3/movie/popular?api_key=" + MOVIE_API_KEY;
@@ -231,7 +229,7 @@
 
     getTopMovies();
 
-    //////// End of Top rated Movies fetch Row///////////////////////////
+//////// End of Top rated Movies fetch Row///////////////////////////
 
 ////////Upcoming Movies fetch Row///////////////////////////
     function getSoonMovies() {
@@ -259,7 +257,6 @@
     getSoonMovies();
 
 // End of Upcoming  Movies fetch Row///////////////////////////
-
     function getFavMovies() {
         const favUrl = "http://localhost:3000/movies";
         const options = {
@@ -282,7 +279,7 @@
 
     getFavMovies();
 
-////////////////////////Favorite Option///////////////////////////
+///////////////////////////End of Favorite Option///////////////////////////
 
 })();
 
