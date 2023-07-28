@@ -57,125 +57,181 @@
 
 
 ////////////////////////Popular Movies fetch Row///////////////////////////
-    function renderMovieCard(movie, isFav) {
-        const card = document.createElement("div");
-        card.classList.add("card");
-        card.innerHTML = `
-                        <img class="card-img-top" src="https://image.tmdb.org/t/p/w500${movie.poster_path}">
-                        <div class="card-body">
-                            <h5 class="card-title">${movie.title}</h5>
-                            <p class="card-text">
-                                Released: ${movie.release_date} <br>
-                                Rating: ${movie.vote_average}
-                            </p>
-                            ${isFav ? '<button class="btn btn-primary remove">Remove</button>' : `<button class="btn btn-primary edit">Add to Favorite</button>`}
-                        </div>
-                    `;
+//     function renderMovieCard(movie, isFav) {
+//         const card = document.createElement("div");
+//         card.classList.add("card");
+//         card.innerHTML = `
+//                         <img class="card-img-top" src="https://image.tmdb.org/t/p/w500${movie.poster_path}">
+//                         <div class="card-body">
+//                             <h5 class="card-title">${movie.title}</h5>
+//                             <p class="card-text">
+//                                 Released: ${movie.release_date} <br>
+//                                 Rating: ${movie.vote_average}
+//                             </p>
+//                             ${isFav ? '<button class="btn btn-primary remove">Remove</button>' : `<button class="btn btn-primary edit">Add to Favorite</button>`}
+//                         </div>
+//                     `;
+//
+//         if (!isFav) {
+//             const button = card.querySelector("button.btn.btn-primary.edit")
+//             button.addEventListener("click", (event) => {
+//                 const url = 'http://localhost:3000/movies';
+//                 const options = {
+//                     method: 'POST',
+//                     headers: {
+//                         'Content-Type': 'application/json',
+//                     },
+//                     body: JSON.stringify(movie)
+//                 }
+//                 fetch(url, options)
+//                     .then(response => response.json())
+//                     .then(data => {
+//                         // console.log(data);
+//                         const container5 = document.getElementById("container5");
+//                         const card = renderMovieCard(data, true);
+//                         container5.appendChild(card);
+//                     })
+//             });
+//         } else {
+//             const button = card.querySelector("button.btn.btn-primary.remove")
+//             button.addEventListener("click", (event) => {
+//                 const url = `http://localhost:3000/movies/${movie.id}`;
+//                 const options = {
+//                     method: 'DELETE',
+//                     headers: {
+//                         'Content-Type': 'application/json',
+//                     },
+//                     body: JSON.stringify(movie)
+//                 }
+//                 fetch(url, options)
+//                     .then(response => response.json())
+//                     .then(data => {
+//                         // console.log(data);
+//                         card.remove();
+//                     })
+//             });
+//             const modal = document.createElement('div');
+//             modal.classList.add("modal", "fade");
+//             modal.setAttribute('id', movie.id);
+//             modal.setAttribute('data-bs-backdrop', 'static');
+//             modal.setAttribute('data-bs-keyboard', 'false');
+//             modal.setAttribute("tabindex", "-1");
+//             modal.setAttribute("aria-labelledby", "staticBackdropLabel");
+//             modal.setAttribute("aria-hidden", "true");
+//             modal.innerHTML = `
+//                         <div class="modal-dialog">
+//                             <div class="modal-content">
+//                                 <div class="modal-header">
+//                                     <h1 class="modal-title fs-5" id="staticBackdropLabel">What's Your Rating?</h1>
+//                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+//                                 </div>
+//                                 <div class="modal-body">
+//                                     <input type="text">
+//                                 </div>
+//                                 <div class="modal-footer">
+//                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+//                                     <button type="button" class="btn btn-primary submit">Submit</button>
+//                                 </div>
+//                             </div>
+//                         </div>
+//                     `;
+//             const submitBtn = modal.querySelector('button.submit');
+//             const textInput = modal.querySelector('input');
+//
+//             submitBtn.addEventListener("click", () => {
+//                 const url = `http://localhost:3000/movies/${movie.id}`;
+//                 const options = {
+//                     method: 'PATCH',
+//                     headers: {
+//                         'Content-Type': 'application/json',
+//                     },
+//                     body: JSON.stringify({
+//                         review: textInput.value
+//                     })
+//                 };
+//                 fetch(url, options)
+//                     .then(response => response.json())
+//                     .then(data => {
+//                         console.log('Success:', data)
+//
+//                     })
+//                     .catch((error) => {
+//                         console.error('Error:', error);
+//                     });
+//                 bootstrapModal.hide();
+//             });
+//
+//             document.body.appendChild(modal);
+//             const bootstrapModal = new bootstrap.Modal(modal);
+//             card.addEventListener('click', (e) => {
+//                 if (e.target === button) {
+//                 } else {
+//
+//                     console.log('clicked the card, but not the button');
+//
+//                     bootstrapModal.show();
+//
+//                 }
+//             })
+//         }
+//         return card;
+//     }
 
-        if (!isFav) {
-            const button = card.querySelector("button.btn.btn-primary.edit")
-            button.addEventListener("click", (event) => {
-                const url = 'http://localhost:3000/movies';
-                const options = {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(movie)
-                }
-                fetch(url, options)
-                    .then(response => response.json())
-                    .then(data => {
-                        // console.log(data);
-                        const container5 = document.getElementById("container5");
-                        const card = renderMovieCard(data, true);
-                        container5.appendChild(card);
-                    })
+function createCard(movie){
+    return createMovieCard(movie, "Add to Favorite", "add", () => {
+        const url = 'http://localhost:3000/movies';
+        const options = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(movie)
+        };
+        fetch(url, options)
+            .then(response => response.json())
+            .then(data => {
+                const container5 = document.getElementById("container5");
+                const card = renderFavMovieCard(data);
+                container5.appendChild(card);
             });
-        } else {
-            const button = card.querySelector("button.btn.btn-primary.remove")
-            button.addEventListener("click", (event) => {
-                const url = `http://localhost:3000/movies/${movie.id}`;
-                const options = {
-                    method: 'DELETE',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(movie)
-                }
-                fetch(url, options)
-                    .then(response => response.json())
-                    .then(data => {
-                        // console.log(data);
-                        card.remove();
-                    })
-            });
-            const modal = document.createElement('div');
-            modal.classList.add("modal", "fade");
-            modal.setAttribute('id', movie.id);
-            modal.setAttribute('data-bs-backdrop', 'static');
-            modal.setAttribute('data-bs-keyboard', 'false');
-            modal.setAttribute("tabindex", "-1");
-            modal.setAttribute("aria-labelledby", "staticBackdropLabel");
-            modal.setAttribute("aria-hidden", "true");
-            modal.innerHTML = `
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">What's Your Rating?</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <input type="text"> 
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary submit">Submit</button>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-            const submitBtn = modal.querySelector('button.submit');
-            const textInput = modal.querySelector('input');
+    });
+}
 
-            submitBtn.addEventListener("click", () => {
-                const url = `http://localhost:3000/movies/${movie.id}`;
-                const options = {
-                    method: 'PATCH',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        review: textInput.value
-                    })
-                };
-                fetch(url, options)
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log('Success:', data)
+function renderFavMovieCard(movie) {
+    return createMovieCard(movie, "Remove", "remove", () => {
+        const url = `http://localhost:3000/movies/${movie.id}`;
+        const options = {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' }
+        };
+    fetch(url, options)
+        .then(response => response.json())
+        .then(data => {
+            card.remove();
+        });
+});
+}
 
-                    })
-                    .catch((error) => {
-                        console.error('Error:', error);
-                    });
-                bootstrapModal.hide();
-            });
+function createMovieCard(movie, buttonText, buttonClass, buttonAction) {
+    const card = document.createElement("div");
+    card.classList.add("card");
+    card.innerHTML = `
+                    <img class="card-img-top" src="https://image.tmdb.org/t/p/w500${movie.poster_path}">
+                    <div class="card-body">
+                        <h5 class="card-title">${movie.title}</h5>
+                        <p class="card-text">
+                            Released: ${movie.release_date} <br>
+                            Rating: ${movie.vote_average}
+                        </p>
+                        <button class="btn btn-primary ${buttonClass}">${buttonText}</button>
+                    </div>
+                `;
+    const button = card.querySelector(`button.${buttonClass}`);
+    button.addEventListener("click", buttonAction);
+    return card;
+}
 
-            document.body.appendChild(modal);
-            const bootstrapModal = new bootstrap.Modal(modal);
-            card.addEventListener('click', (e) => {
-                if (e.target === button) {
-                } else {
-
-                    console.log('clicked the card, but not the button');
-
-                    bootstrapModal.show();
-
-                }
-            })
-        }
-        return card;
-    }
+function renderMovieCard(movie, isFav) {
+    return isFav ? renderFavMovieCard(movie) : createCard(movie);
+}
 
 ////////////////////////END of Popular Movies fetch Row///////////////////////////
 
